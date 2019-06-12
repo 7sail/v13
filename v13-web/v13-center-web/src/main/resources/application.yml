@@ -1,0 +1,11 @@
+dubbo:
+  application:
+    name: center-web
+  registry:
+    protocol: zookeeper
+    address: study.forwt.top:2181
+spring:
+  thymeleaf:
+    cache: false
+server:
+  port: 9999
