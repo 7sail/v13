@@ -10,7 +10,7 @@ dubbo:
     name: product-service
   registry:
     protocol: zookeeper
-    address: 10.36.147.122:2181
+    address: 192.168.17.128:2181
   protocol:
     port: 28811
 

@@ -10,6 +10,7 @@
         <module name="v13-service" />
         <module name="v13-mapper" />
         <module name="v13-common" />
+        <module name="v13-index-web" />
         <module name="v13-entity" />
         <module name="v13-center-web" />
         <module name="v13-web" />
@@ -24,6 +25,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="v13-center-web" options="-parameters" />
+      <module name="v13-index-web" options="-parameters" />
       <module name="v13-product-service" options="-parameters" />
     </option>
   </component>

@@ -31,7 +31,13 @@
     delete from t_product
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.qf.v13.entity.TProduct">
+  <update id="batchDel" parameterType="java.util.List">
+    update t_product set flag=0 where id in
+    <foreach collection="list" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </update>
+  <insert id="insert" parameterType="com.qf.v13.entity.TProduct" keyProperty="id" useGeneratedKeys="true">
     insert into t_product (id, name, price, 
       sale_price, images, sale_point, 
       type_id, type_name, flag)

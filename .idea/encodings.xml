@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/v13-service/v13-product-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/v13-web/v13-center-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/v13-web/v13-index-web" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
