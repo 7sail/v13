@@ -8,6 +8,11 @@ public class TProductVO implements Serializable {
     private TProduct product;
     private String productDesc;
 
+    public TProductVO(TProduct product, String productDesc) {
+        this.product = product;
+        this.productDesc = productDesc;
+    }
+
     public TProduct getProduct() {
         return product;
     }

@@ -1,5 +1,8 @@
 package com.qf.v13.common.pojo;
-public class ResultBean<T>{
+
+import java.io.Serializable;
+
+public class ResultBean<T> implements Serializable {
     private String statusCode;
     private T data;
 

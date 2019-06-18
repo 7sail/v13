@@ -10,9 +10,8 @@ import org.springframework.context.annotation.Import;
 @EnableDubbo
 @Import(FdfsClientConfig.class)
 public class V13CenterWebApplication {
-
     public static void main(String[] args) {
-        SpringApplication.run(V13CenterWebApplication.class, args);
+        SpringApplication. run(V13CenterWebApplication.class, args);
     }
 
 }

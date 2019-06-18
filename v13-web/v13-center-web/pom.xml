@@ -60,6 +60,11 @@
             <artifactId>fastdfs-client</artifactId>
             <version>1.26.1-RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.qf</groupId>
+            <artifactId>v13-search-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

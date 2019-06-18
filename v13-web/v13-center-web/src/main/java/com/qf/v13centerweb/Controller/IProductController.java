@@ -2,12 +2,15 @@ package com.qf.v13centerweb.Controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
+import com.qf.v13.api.IProductDescService;
 import com.qf.v13.api.IProductService;
 import com.qf.v13.api.IProductTypeService;
 import com.qf.v13.common.pojo.ResultBean;
 import com.qf.v13.entity.TProduct;
+import com.qf.v13.entity.TProductDesc;
 import com.qf.v13.entity.TProductType;
 import com.qf.v13.pojo.TProductVO;
+import com.qf.v13search.api.ISearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +23,13 @@ import java.util.List;
 @RequestMapping("product")
 public class IProductController {
     @Reference
+    private ISearchService searchService;
+    @Reference
     private IProductService productService;
     @Reference
     private IProductTypeService productTypeService;
+    @Reference
+    private IProductDescService productDescService;
     @ResponseBody
     @RequestMapping("get/{id}")
     public TProduct getByid(@PathVariable("id") Long id){
@@ -49,9 +56,22 @@ public class IProductController {
         model.addAttribute("typelist",typelist);
         return "product/list";
     }
+    @PostMapping("getOption")
+    @ResponseBody
+    public ResultBean getOption(){
+        List<TProductType> list = productTypeService.list();
+        if (list!=null){
+            return new ResultBean("200",list);
+        }else{
+            return new ResultBean("404","你懂的");
+        }
+
+    }
     @RequestMapping("add")
     public String add(TProductVO vo){
-        Long count = productService.save(vo);
+        Long id = productService.save(vo);
+        searchService.synAllDataById(id);
+
         return "redirect:/product/page/1/3";
     }
     @PostMapping("delById/{id}")
@@ -64,6 +84,25 @@ public class IProductController {
             return new ResultBean("404","删除失败，你懂得！");
         }
 
+    }
+    @PostMapping("toUpdate/{id}")
+    @ResponseBody
+    public ResultBean toUpdate(@PathVariable Long id){
+        TProduct tProduct = productService.selectByPrimaryKey(id);
+        TProductDesc tProductDesc = productDescService.selectByProductId(id);
+        TProductVO tProductVO = new TProductVO(tProduct,tProductDesc.getProductDesc());
+        if (tProductVO!=null){
+            return new ResultBean("200",tProductVO);
+        }else {
+            return new ResultBean("404","你懂得");
+        }
+
+    }
+
+    @PostMapping("update")
+    public String update(TProductVO vo){
+        Long count =productService.update(vo);
+        return "redirect:/product/page/1/3";
     }
     @PostMapping("batchDel")
     @ResponseBody

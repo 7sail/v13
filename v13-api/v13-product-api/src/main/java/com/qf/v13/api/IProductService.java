@@ -12,4 +12,6 @@ public interface IProductService extends IBaseService<TProduct> {
     public Long save(TProductVO vo);
 
     int batchDel(List<Long> ids);
+
+    Long update(TProductVO vo);
 }

@@ -5,4 +5,5 @@ import com.qf.v13.entity.TProductDesc;
 
 public interface TProductDescMapper extends IBaseDao<TProductDesc> {
 
+    TProductDesc selectByProductId(Long id);
 }
